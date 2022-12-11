@@ -22,6 +22,4 @@ Users.init({
     tableName: 'users'
 });
 
-Users.beforeCreate('name', () => {
-    console.log('123456789');
-});
+module.exports = Users;
