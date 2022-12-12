@@ -1,2 +1,24 @@
 <h1>Страница регистрации</h1>
+<form>
+    <label for="login"><b>Login</b></label><br>
+    <input type="text" placeholder="Login" name="login" id="login" required>
+    <br>
+    <label for="password"><b>Password</b></label><br>
+    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+    <br>
+    <button>Registration</button>
+</form>
 <a href="/">Назад</a>
+
+<script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+
+        const login = form.login.value;
+        const password = form.password.value;
+
+        console.log(login, password);
+    });
+</script>

@@ -18,9 +18,6 @@ app.use(routes);
 db.authenticate()
     .then(() => {
         console.log('Соединение с базой данных выполнено')
+        app.listen(PORT, () => console.log(`Сервер запущен на localhost:${PORT}`));
     })
     .catch((err) => console.error('Ошибка базы данных', err));
-
-app.listen(PORT, () => {
-    console.log(`Сервер запущен на localhost:${PORT}`);
-});
