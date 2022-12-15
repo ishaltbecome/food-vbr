@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 const { Sequelize } = require('sequelize');
 
 const routes = require('./routes');
@@ -11,8 +12,11 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
+app.use(express.static("public"))
 app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 app.use(morgan('dev'));
+app.use(cookieParser());
 app.use(routes);
 
 db.authenticate()
