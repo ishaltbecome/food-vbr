@@ -1,0 +1,46 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-self: center;
+  border: 1px solid black;
+  padding: 15px;
+  margin: 25px;
+}
+
+#form-login h2 {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+#form-login button {
+  margin-top: 25px;
+  text-align: center;
+  font-size: x-large;
+}
+
+.form-group {
+  font-size: x-large;
+  margin: 10px 0 10px 0;
+}
+
+.form-group * {
+  display: block;
+}
+
+.form-group input {
+  font-size: x-large;
+}

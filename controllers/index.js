@@ -1,7 +1,7 @@
 class Controllers {
     async homeGet(req, res) {
-        res.render('home');
+        res.render('home')
     }
 }
 
-module.exports = new Controllers();
+module.exports = new Controllers()

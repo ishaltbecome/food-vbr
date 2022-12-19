@@ -1,27 +1,29 @@
-const express = require('express');
-const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
-const { Sequelize } = require('sequelize');
+require('dotenv').config()
+const express = require('express')
+const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
+const { Sequelize } = require('sequelize')
 
-const routes = require('./routes');
+const routes = require('./routes')
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
+const HOST = process.env.PORT || 'localhost'
 
-const db = new Sequelize(require('./db.config'));
-const app = express();
+const sequelize = new Sequelize(process.env.DB_URI)
+const app = express()
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs')
 
 app.use(express.static("public"))
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(morgan('dev'));
-app.use(cookieParser());
-app.use(routes);
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+app.use(morgan('dev'))
+app.use(cookieParser())
+app.use(routes)
 
-db.authenticate()
+sequelize.authenticate()
     .then(() => {
         console.log('Соединение с базой данных выполнено')
-        app.listen(PORT, () => console.log(`Сервер запущен на localhost:${PORT}`));
+        app.listen(PORT, () => console.log(`Сервер запущен на ${HOST}:${PORT}`))
     })
-    .catch((err) => console.error('Ошибка базы данных', err));
+    .catch((err) => console.error('Ошибка базы данных', err))

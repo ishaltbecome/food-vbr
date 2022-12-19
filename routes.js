@@ -1,13 +1,13 @@
 const router = require('express').Router();
 
 const controllers = require('./controllers');
-const authController = require('./controllers/auth');
+const authController = require('./controllers/AuthController');
+const { requireAuth } = require('./middlewares/authMiddleware');
 
-router.get('/', controllers.homeGet);
 
-router.route('/registration')
-    .get(authController.registrationGet)
-    .post(authController.registrationPost);
+// router.get('*', req)
+
+router.get('/', requireAuth, controllers.homeGet);
 
 router.route('/login')
     .get(authController.loginGet)

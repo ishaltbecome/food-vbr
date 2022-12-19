@@ -1,7 +1,6 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const bcrypt = require('bcrypt');
+const { Sequelize, DataTypes, Model } = require('sequelize')
 
-const sequelize = new Sequelize(require('../db.config'));
+const sequelize = new Sequelize(process.env.DB_URI)
 
 class User extends Model {}
 
@@ -24,18 +23,6 @@ User.init({
     sequelize,
     tableName: 'users',
     timestamps: false
-});
+})
 
-User.login = async function(login, password) {
-    const user = await this.findOne({ where: { login: login } });
-    if (user) {
-        const auth = await bcrypt.compare(password, user.password);
-        if (auth) {
-            return user;
-        }
-        throw Error('Неверный пароль');
-    }
-    throw Error('Пользователь не найден');
-}
-
-module.exports = User;
+module.exports = User
