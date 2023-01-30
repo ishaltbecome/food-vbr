@@ -1,15 +1,12 @@
-const { Sequelize, DataTypes, Model } = require('sequelize')
+require('dotenv').config()
+const bcrypt = require('bcrypt')
+const { Sequelize, DataTypes } = require('sequelize')
+
+const Role = require('./Role')
 
 const sequelize = new Sequelize(process.env.DB_URI)
 
-class User extends Model {}
-
-User.init({
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
+const User = sequelize.define('users', {
     login: {
         type: DataTypes.STRING,
         unique: true,
@@ -18,11 +15,22 @@ User.init({
     password: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    roleId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Role,
+            key: 'id'
+        }
     }
 }, {
-    sequelize,
-    tableName: 'users',
-    timestamps: false
+    timestamps: false,
+    hooks: {
+        beforeCreate: async (user, options) => {
+            const hashedPassword = await bcrypt.hash(user.password, 5)
+            user.password = hashedPassword
+        }
+    }
 })
 
 module.exports = User

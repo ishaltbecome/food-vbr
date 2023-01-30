@@ -1,0 +1,38 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#dashboard-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: yellow;
+  padding: 10px;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+#dashboard-menu {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgb(193, 193, 193);
+  width: 20%;
+  height: 500px;
+}
+
+#dashboard-content {
+  margin: 10px;
+}
+
+table, thead, td {
+  border: 1px solid;
+}
+
+table thead {
+  background-color: #fcc;
+}

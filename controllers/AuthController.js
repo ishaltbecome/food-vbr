@@ -11,27 +11,6 @@ function generateToken(login) {
 }
 
 class AuthController {
-    // registrationGet(req, res) {
-    //     res.render('registration')
-    // }
-    
-    // async registrationPost(req, res) {
-    //     const { login, password } = req.body
-
-    //     const hashedPassword = await bcrypt.hash(password, 5)
-
-    //     await User.create({ login: login, password: hashedPassword })
-    //     .then((user) => {
-    //         const token = generateToken(user.login)
-    //         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
-    //         return res.status(201).json(user)
-    //     })
-    //     .catch((err) => {
-    //         console.error('error:', err.name)
-    //         return res.json({error: err})
-    //     })
-    // }
-
     loginGet(req, res) {
         res.render('login')
     }
@@ -57,7 +36,8 @@ class AuthController {
     }
 
     async logoutGet(req, res) {
-        // 
+        res.cookie('jwt', '', { maxAge: 1 })
+        res.redirect('/login')
     }
 }
 

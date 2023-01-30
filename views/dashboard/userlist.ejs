@@ -1,0 +1,30 @@
+<%- include('partials/header') %> 
+
+<div id="wrapper">
+  <%- include('partials/menu') %> 
+  <div id="dashboard-content">
+    <h2>Список пользователей</h2>
+    <table>
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Login</td>
+          <td>Role</td>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% users.forEach(user => { %>
+          <tr>
+            <td><%= user.id %> </td>
+            <td><%= user.login %> </td>
+            <td><%= user.roleId %> </td>
+          </tr>
+        <% }) %>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('partials/footer') %> 

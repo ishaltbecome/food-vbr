@@ -32,7 +32,8 @@
                 });
                 const data = await res.json();
                 console.log(data);
-                if (data.login) location.assign('/');
+                if (data.login === 'admin') location.assign('/dashboard');
+                else location.assign('/')
             } catch (err) {
                 console.log(err);
             }
